@@ -1,14 +1,14 @@
 const express = require("express");
+const page = require("../middlewares/pagination.js");
+const StatsController = require("../controllers/statsControllers.js");
 const statsRoutes = express.Router();
 
-statsRoutes.get("/", (req, res) => {
-    // Lógica para lidar com a rota "/stats"
-  });
-  
-statsRoutes.get("/:id", (req, res) => {
-    // Lógica para lidar com a rota "/stats/:id"
-  });
+const ROTAS = {
+  STATS: "/stats",
+  STATS_ID: "/stats:id"
+ };
 
+ statsRoutes.get(ROTAS.STATS,StatsController.ListStats);
 
 
 module.exports = statsRoutes;
