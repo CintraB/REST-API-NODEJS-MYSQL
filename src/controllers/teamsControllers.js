@@ -107,8 +107,23 @@ class TeamController {
     static DeleteTeam = async (req, res) => {
 
         try {
+            const id = req.params.id;
+
+            // Iniciar a transação
+            await poolConnect.query('START TRANSACTION');
+
+            //Deletar dados do banco
+            await poolConnect.query("DELETE FROM stats WHERE team_id=?;", id);
+            await poolConnect.query("DELETE FROM teams WHERE id=?;", id);
+
+            // Commit da transação
+            await poolConnect.query('COMMIT');
+
+            res.status(200).json({ message: 'Data deleted successfully' });
 
         } catch (error) {
+            // Se houver erro, rollback da transação
+            await poolConnect.query('ROLLBACK');
             res.status(500).json(error);
         }
     };
