@@ -51,6 +51,8 @@ class TeamController {
 
             if (token) {
 
+                // Iniciar a transação
+                await poolConnect.query('START TRANSACTION');
                 //cadastrando time no banco primeiramente para receber o ID AI
                 const resultTeamInsert = await poolConnect.query("INSERT INTO teams (teamname,conference,wins,losses,estimated_value,coach) VALUES (?,?,?,?,?,?)", values_team);
                 //obtendo ID do time cadastrado
@@ -58,12 +60,18 @@ class TeamController {
                 //cadastrando na segunda tabela stats
                 await poolConnect.query("INSERT INTO stats (team_id, average_age, average_height, average_wingspan) VALUES (?, ?, ?, ?)", [teamId[0][0].id, ...values_stats]);
                 const response = { team_id: teamId[0][0].id, team_values: values_team, stats_values: values_stats };
+                // Commit da transação
+                await poolConnect.query('COMMIT');
                 res.status(200).json(response);
             } else {
+                // Se houver erro, rollback da transação
+                await poolConnect.query('ROLLBACK');
                 res.status(400).json({ error: 'Invalid data' });
             }
 
         } catch (error) {
+            // Se houver erro, rollback da transação
+            await poolConnect.query('ROLLBACK');
             res.status(500).json(error);
         }
     };
