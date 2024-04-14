@@ -12,9 +12,10 @@ teamRoutes.get(ROTAS.TIME,TeamController.ListTeams);
 teamRoutes.get(ROTAS.TIME_ID,TeamController.ListTeamsByID);
 teamRoutes.post(ROTAS.TIME,TeamController.RegisterTeam);
 //routes.get("/livros/busca", LivroController.listarLivroPorFiltro, paginar);
+teamRoutes.put(ROTAS.TIME_ID,TeamController.AlterTeam);
+
 
 //routes.post("/livros",LivroController.cadastrarLivro);
-//routes.put("/livros/:id",LivroController.atualizarLivro);
 //routes.delete("/livros/:id",LivroController.excluirLivro);
 
 module.exports = teamRoutes;

@@ -19,7 +19,7 @@ class TeamController {
         try {
             const id = req.params.id;
             const [results, fields] = await poolConnect.query("SELECT * FROM teams WHERE id=?;", id);
-            const [results_stats,fields_stats] = await poolConnect.query("SELECT * FROM stats WHERE team_id=?",id);
+            const [results_stats, fields_stats] = await poolConnect.query("SELECT * FROM stats WHERE team_id=?", id);
             const response = { team: results, team_stats: results_stats };
             res.status(200).json(response);
         } catch (error) {
@@ -71,8 +71,35 @@ class TeamController {
     static AlterTeam = async (req, res) => {
 
         try {
+            const id = req.params.id;
+            const values_team = [req.body.team, req.body.conference, req.body.wins, req.body.losses, req.body.value, req.body.coach];
+            const values_stats = [req.body.team_age, req.body.team_height, req.body.team_wingspan];
+
+            // Verifica se algum valor em values_team e values_stats é nulo
+            const isAnyTeamValueNull = values_team.some(value => value === null || value === undefined || value === '');
+            const isAnyStatsValueNull = values_stats.some(value => value === null || value === undefined || value === '');
+
+            if (isAnyTeamValueNull || isAnyStatsValueNull) {
+                res.status(400).json({ message: 'There are missing fields' });
+            } else {
+                // Iniciar a transação
+                await poolConnect.query('START TRANSACTION');
+
+                // Atualizar os dados na tabela teams
+                await poolConnect.query('UPDATE teams SET teamname = ?, conference = ?, wins = ?, losses = ?, estimated_value = ?, coach = ? WHERE id = ?', [...values_team, id]);
+
+                // Atualizar os dados na tabela stats
+                await poolConnect.query('UPDATE stats SET average_age = ?, average_height = ?, average_wingspan = ? WHERE team_id = ?', [...values_stats, id]);
+
+                // Commit da transação
+                await poolConnect.query('COMMIT');
+
+                res.status(200).json({ message: 'Data updated successfully' });
+            }
 
         } catch (error) {
+            // Se houver erro, rollback da transação
+            await poolConnect.query('ROLLBACK');
             res.status(500).json(error);
         }
     };
