@@ -7,6 +7,7 @@ class TeamController {
         try {
 
             const [results, fields] = await poolConnect.query("SELECT * FROM teams;");
+            //adicionar paginação
             res.status(200).json(results);
         } catch (error) {
             res.status(500).json(error);
@@ -18,8 +19,9 @@ class TeamController {
         try {
             const id = req.params.id;
             const [results, fields] = await poolConnect.query("SELECT * FROM teams WHERE id=?;", id);
-            //adicionar retorno da tabela stats
-            res.status(200).json(results);
+            const [results_stats,fields_stats] = await poolConnect.query("SELECT * FROM stats WHERE team_id=?",id);
+            const response = { team: results, team_stats: results_stats };
+            res.status(200).json(response);
         } catch (error) {
             res.status(500).json(error);
         }
