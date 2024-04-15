@@ -9,7 +9,7 @@ class TeamController {
             const [results, fields] = await poolConnect.query("SELECT * FROM teams;");
             //adicionar paginação
             req.results = results;
-            console.log(results);
+  
             next();
         } catch (error) {
             res.status(500).json(error);
