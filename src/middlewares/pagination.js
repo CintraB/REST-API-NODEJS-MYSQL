@@ -5,10 +5,6 @@ const search = require("../middlewares/search.js");
 
 async function page(req, res, next) {
   try {
-    //const params = req.query;
-    //console.log(params);
-    //const whereClause = await processSearch(params); // WHERE com base nos filtros da consulta
-    //console.log(whereClause);
 
     let { limit = 5, page = 1, sorting = "id ASC" } = req.query;
 
