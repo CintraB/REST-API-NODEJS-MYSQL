@@ -8,7 +8,7 @@ const ROTAS = {
     TIME_ID: "/teams/:id"
    };
 
-teamRoutes.get(ROTAS.TIME,TeamController.ListTeams);
+teamRoutes.get(ROTAS.TIME,page,TeamController.ListTeams);
 teamRoutes.get(ROTAS.TIME_ID,TeamController.ListTeamsByID);
 teamRoutes.post(ROTAS.TIME,TeamController.RegisterTeam);
 //routes.get("/livros/busca", LivroController.listarLivroPorFiltro, paginar);

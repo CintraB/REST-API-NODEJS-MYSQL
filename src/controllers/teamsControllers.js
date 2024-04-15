@@ -2,13 +2,15 @@ const poolConnect = require("../config/dbConnect.js"); // Importa o pool de cone
 
 class TeamController {
 
-    static ListTeams = async (req, res) => {
+    static ListTeams = async (req, res,next) => {
 
         try {
 
             const [results, fields] = await poolConnect.query("SELECT * FROM teams;");
             //adicionar paginação
-            res.status(200).json(results);
+            req.results = results;
+            console.log(results);
+            next();
         } catch (error) {
             res.status(500).json(error);
         }
