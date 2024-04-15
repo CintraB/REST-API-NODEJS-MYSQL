@@ -53,11 +53,11 @@ O servidor estará acessível em http://localhost:3000.
 
 | VERBO | URL |
 |----------|----------|
-| GET | http://localhost:3000/teams/?limit=6&page=1 |
-| GET | http://localhost:3000/teams/search?teamname=Boston%20Celtics&conference=Leste&coach=Joe%20Mazzulla |
-| POST | http://localhost:3000/teams/ |
-| PUT | http://localhost:3000/teams/30 |
-| DELETE | http://localhost:3000/teams/33 |
+|GET| http://localhost:3000/teams/?limit=6&page=1 |
+|GET| http://localhost:3000/teams/search?teamname=Boston%20Celtics&conference=Leste&coach=Joe%20Mazzulla |
+|POST| http://localhost:3000/teams/ |
+|PUT| http://localhost:3000/teams/30 |
+|DELETE| http://localhost:3000/teams/33 |
 
 Exemplo Json para cadastrar e alterar times.
 ```plaintext
@@ -78,9 +78,9 @@ Exemplo Json para cadastrar e alterar times.
 
 | VERBO | URL |
 |----------|----------|
-| GET | http://localhost:3000/stats/?limit=6&page=1 |
-| GET | http://localhost:3000/stats/1 |
-| PUT | http://localhost:3000/stats/35 |
+|GET| http://localhost:3000/stats/?limit=6&page=1 |
+|GET| http://localhost:3000/stats/1 |
+|PUT| http://localhost:3000/stats/35 |
 
 Exemplo Json para alterar estatísticas de um time.
 ```plaintext
