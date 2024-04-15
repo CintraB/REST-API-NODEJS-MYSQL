@@ -49,7 +49,7 @@ O servidor estará acessível em http://localhost:3000.
     - GET /stats/search: Obtém estatísticas filtradas com base em parâmetros de busca.
     - PUT /stats/:id: Atualiza estatísticas existentes pelo ID do time.
 
-###Tabela Times
+**Tabela Times**
 
 | VERBO | URL |
 |----------|----------|
@@ -74,7 +74,7 @@ Exemplo Json para cadastrar e alterar times.
 }
 ```
 
-###Tabela Estatísticas
+**Tabela Estatísticas**
 
 | VERBO | URL |
 |----------|----------|
