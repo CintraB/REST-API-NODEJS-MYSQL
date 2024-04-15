@@ -11,6 +11,7 @@ const ROTAS = {
 
  statsRoutes.get(ROTAS.STATS_SEARCH,StatsController.ListStatsByFilter,pageStats);
  statsRoutes.get(ROTAS.STATS,StatsController.ListStats,pageStats);
+ statsRoutes.get(ROTAS.STATS_ID,StatsController.ListStatsByID);
  statsRoutes.put(ROTAS.STATS_ID,StatsController.AlterStats);
 
 

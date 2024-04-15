@@ -22,7 +22,7 @@ Antes de executar o aplicativo, é necessário configurar as variáveis de ambie
 
 ```plaintext
 PORT=3000
-CONNECTION_STRING=mysql://root:key@ip:port/database_name
+CONNECTION_STRING=mysql://root:password@ip:port/database_name
 ```
 
 ## Execução

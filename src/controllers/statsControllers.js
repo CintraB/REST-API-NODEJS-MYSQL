@@ -33,6 +33,18 @@ class StatsController {
         }
     };
 
+    static ListStatsByID = async (req, res) => {
+
+        try {
+            const id = req.params.id;
+            const [results_stats, fields_stats] = await poolConnect.query("SELECT * FROM stats WHERE team_id=?", id);
+            res.status(200).json(results_stats);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+
+    };
+
     static AlterStats = async (req, res) => {
 
         try {
