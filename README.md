@@ -13,8 +13,8 @@ docker pull cintrab98/dbmysql
 docker run --name db-api-nba --network net-api cintrab98/dbmysql:1.0
 ```
 - **Mais informações em** 
--https://hub.docker.com/repository/docker/cintrab98/api-nba/general 
--https://hub.docker.com/repository/docker/cintrab98/dbmysql/general
+      - https://hub.docker.com/repository/docker/cintrab98/api-nba/general 
+      - https://hub.docker.com/repository/docker/cintrab98/dbmysql/general
 
 
 ## Instalação
